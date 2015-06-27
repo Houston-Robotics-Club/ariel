@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Donovan Buck <donovan@donovan.bz>",
-  "license": "ISC"
+  "license": "MIT",
+  "dependencies": {
+    "johnny-five": "^0.8.81"
+  }
 }

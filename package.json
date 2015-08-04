@@ -10,5 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "johnny-five": "^0.8.81"
+    "hapi": "^8.8.1",
+    "johnny-five": "^0.8.81",
   }
 }

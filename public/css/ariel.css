@@ -23,9 +23,10 @@ body {
   height: 25vw;
   width: 16vw;
   background-color: red;
-  margin: 1vw;
+  margin: 1vw 1vw 0 1vw;
 }
 
 button {
   margin: 1vw;
+  width: 16vw;
 }

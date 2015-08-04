@@ -3,26 +3,34 @@
   <head>
     <link href="/css/ariel.css" media="all" rel="stylesheet" />
     <script src="/js/simpleWebRTC.js"></script>
-    <script>
-
-      var webrtc = new SimpleWebRTC({
-        localVideoEl: 'localVideo',
-        remoteVideosEl: 'remotesVideos',
-        autoRequestMedia: true
-      });
-
-      // we have to wait until it's ready
-      webrtc.on('readyToCall', function () {
-        // you can name it anything
-        webrtc.joinRoom('Houston Robotics Club: Ariel');
-      });
-    </script>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
       <div class="controls">
-        <video id="localVideo"></video>
+        <div id="videoContainer">
+          <video id="localVideo"></video>
+        </div>
         <button id="led">Toggle LED</button>
       </div>
       <div id="remotesVideos"></div>
+      <script>
+        var socket = io();
+        socket.emit('newUser');
+
+        var webrtc = new SimpleWebRTC({
+          localVideoEl: 'localVideo',
+          remoteVideosEl: 'remotesVideos',
+          autoRequestMedia: true
+        });
+
+        webrtc.on('readyToCall', function () {
+          webrtc.joinRoom('Houston Robotics Club: Ariel');
+        });
+
+        var ledButton = document.getElementById("led");
+        ledButton.addEventListener("click", function() {
+          socket.emit('toggleLED');
+        });
+      </script>
   </body>
 </html>

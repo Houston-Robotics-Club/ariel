@@ -1,6 +1,7 @@
 var bot = require("./lib/bot.js");
 var Hapi = require('hapi');
 
+
 if (process.env.ARIELENV === "dev") {
   opts = {
     port: 8000
@@ -60,5 +61,18 @@ server.route([
 
 // Start the server
 server.start();
+
+var io = require('socket.io')(server.listener);
+
+io.on('connection', function (socket) {
+  socket.on('newUser', function () {
+    console.log("Hi New User");
+  });
+  socket.on("toggleLED", function() {
+    bot.led.toggle();
+    console.log("Toggle LED");
+  });
+});
+
 
 console.log("Server running on port " + opts.port);

@@ -19,11 +19,17 @@ body {
   float: right;
 }
 
-#localVideo {
+#videoContainer {
   height: 25vw;
   width: 16vw;
-  background-color: red;
+  overflow:hidden;
   margin: 1vw 1vw 0 1vw;
+}
+
+#localVideo {
+  height: 25vw;
+  background-color: red;
+  margin-left: -6vw;
 }
 
 button {

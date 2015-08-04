@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="/css/ariel.css" media="all" rel="stylesheet" />
+    <script src="/js/simpleWebRTC.js"></script>
+    <script>
+
+      var webrtc = new SimpleWebRTC({
+        remoteVideosEl: 'remotesVideos',
+        autoRequestMedia: true
+      });
+
+      webrtc.on('readyToCall', function () {
+        webrtc.joinRoom('Houston Robotics Club: Ariel');
+      });
+
+    </script>
+  </head>
+  <body id="bot">
+      <div id="remotesVideos"></div>
+  </body>
+</html>

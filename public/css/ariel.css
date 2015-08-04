@@ -1,0 +1,31 @@
+body {
+  background-color: #000;
+  margin: 0;
+}
+
+#remotesVideos {
+  background-color: yellow;
+  height: 100vh;
+  width: 82vw;
+}
+
+#bot #remotesVideos {
+  width: 100vw;
+}
+
+.controls {
+  height: 100vw;
+  width: 18vw;
+  float: right;
+}
+
+#localVideo {
+  height: 25vw;
+  width: 16vw;
+  background-color: red;
+  margin: 1vw;
+}
+
+button {
+  margin: 1vw;
+}

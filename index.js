@@ -4,18 +4,17 @@ var Hapi = require('hapi');
 
 if (process.env.ARIELENV === "dev") {
   opts = {
-    port: 8000
+    port: 8080
   };
 } else {
   opts = {
-    port: 2121
+    port: 80
   };
 }
 
 // Create a server with a host and port
 var server = new Hapi.Server();
 server.connection({
-  host: 'localhost',
   port: opts.port
 });
 

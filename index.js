@@ -69,7 +69,7 @@ io.on('connection', function (socket) {
     console.log("Hi New User");
   });
   socket.on("toggleLED", function() {
-    bot.led.toggle();
+    bot.toggle();
     console.log("Toggle LED");
   });
 });

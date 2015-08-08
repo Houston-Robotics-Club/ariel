@@ -8,7 +8,7 @@ if (process.env.ARIELENV === "dev") {
   };
 } else {
   opts = {
-    port: 80
+    port: 2121
   };
 }
 

@@ -9,13 +9,14 @@ body {
   width: 82vw;
 }
 
-#remotesVideos video {
+#user #remotesVideos video {
   transform: rotate(-90deg);
 }
 
 #bot #remotesVideos {
   width: 100vw;
 }
+
 
 .controls {
   height: 100vw;

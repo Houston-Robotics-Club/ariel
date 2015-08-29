@@ -38,7 +38,7 @@
         });
 
         var forwardButton = document.getElementById("forward");
-        ledButton.addEventListener("click", function() {
+        forwardButton.addEventListener("click", function() {
           socket.emit('forward');
         });
 
@@ -58,7 +58,7 @@
         });
 
         var stopButton = document.getElementById("stop");
-        reverseButton.addEventListener("click", function() {
+        stopButton.addEventListener("click", function() {
           socket.emit('stop');
         });
 

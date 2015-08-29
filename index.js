@@ -71,6 +71,21 @@ io.on('connection', function (socket) {
     bot.toggle();
     console.log("Toggle LED");
   });
+  socket.on("left", function() {
+    bot.left();
+    setTimeout(function() { bot.stop(); }, 1000);
+  });
+  socket.on("right", function() {
+    bot.right();
+    setTimeout(function() { bot.stop(); }, 1000);
+  });
+  socket.on("forward", function() {
+    bot.toggle();
+    forward(function() { bot.stop(); }, 1000);
+  });
+  socket.on("stop", function() {
+    bot.stop();
+  });
 });
 
 

@@ -11,6 +11,11 @@
           <video id="localVideo"></video>
         </div>
         <button id="led">Toggle LED</button>
+        <button id="forward">Forward</button>
+        <button id="left">Left</button>
+        <button id="right">Right</button>
+        <button id="reverse">Reverse</button>
+        <button id="stop">Stop</button>
       </div>
       <div id="remotesVideos"></div>
       <script>
@@ -31,6 +36,32 @@
         ledButton.addEventListener("click", function() {
           socket.emit('toggleLED');
         });
+
+        var forwardButton = document.getElementById("forward");
+        ledButton.addEventListener("click", function() {
+          socket.emit('forward');
+        });
+
+        var leftButton = document.getElementById("left");
+        leftButton.addEventListener("click", function() {
+          socket.emit('left');
+        });
+
+        var rightButton = document.getElementById("right");
+        rightButton.addEventListener("click", function() {
+          socket.emit('right');
+        });
+
+        var reverseButton = document.getElementById("reverse");
+        reverseButton.addEventListener("click", function() {
+          socket.emit('reverse');
+        });
+
+        var stopButton = document.getElementById("stop");
+        reverseButton.addEventListener("click", function() {
+          socket.emit('stop');
+        });
+
       </script>
   </body>
 </html>

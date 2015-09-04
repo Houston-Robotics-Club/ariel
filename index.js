@@ -69,19 +69,18 @@ io.on('connection', function (socket) {
   });
   socket.on("toggleLED", function() {
     bot.toggle();
-    console.log("Toggle LED");
   });
   socket.on("left", function() {
     bot.left();
-    setTimeout(function() { bot.stop(); }, 1000);
   });
   socket.on("right", function() {
     bot.right();
-    setTimeout(function() { bot.stop(); }, 1000);
   });
   socket.on("forward", function() {
     bot.forward();
-    setTimeout(function() { bot.stop(); }, 1000);
+  });
+  socket.on("reverse", function() {
+    bot.reverse();
   });
   socket.on("stop", function() {
     bot.stop();

@@ -20,7 +20,9 @@
       </div>
       <div id="remotesVideos"></div>
       <script>
+
         var listener = new window.keypress.Listener();
+
         var socket = io();
         socket.emit('newUser');
 
@@ -43,11 +45,18 @@
           {"com": "stop", "key": "space" }
         ];
 
+        // Loop through our commands
         commands.forEach( function(command) {
+
+          // Grab the DOM element
           command.el = document.getElementById(command.com);
+
+          // Listen for clicks on the element
           command.el.addEventListener("click", function() {
             socket.emit(command.com);
           });
+
+          // Listen for keypress events
           listener.register_combo({
             "keys"              : command.key,
             "on_keydown"        : function() { socket.emit(command.com) },

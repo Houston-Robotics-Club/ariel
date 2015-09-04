@@ -15,6 +15,9 @@ Server framework. Currently we are just using it for [routing](http://hapijs.com
 ### [johnny-five](http://johnny-five.io/)
 The Javascript-Robotics programming framework
 
+### [keypress.js](http://dmauro.github.io/Keypress/)
+Handles keypress events on the client
+
 ##Learning Resources
 
 ###Fundamentals

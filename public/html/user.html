@@ -52,7 +52,7 @@
           command.el = document.getElementById(command.com);
 
           // Listen for clicks on the element
-          command.el.addEventListener("click", function() {
+          command.el.addEventListener("mousedown", function() {
             socket.emit(command.com);
           });
 
@@ -64,6 +64,11 @@
             "prevent_default"   : true,
             "prevent_repeat"    : true
           });
+        });
+
+        // Bind event to window so the event works even when the mouse is outside browser
+        window.addEventListener("mouseup", function() {
+          socket.emit("stop");
         });
 
         setInterval(function() {

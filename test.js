@@ -1,10 +1,28 @@
-var five = require("johnny-five");
+var Five = require("johnny-five");
 
-var board = new five.Board({
-  port: "COM3"
-});
+var board = new Five.Board();
 
 board.on("ready", function() {
-  var led = new five.Led(13);
-  led.blink(1000);
+
+  m1 = new Five.Motor({
+    pins: {
+      dir: 3,
+      pwm: 2
+    }
+  });
+
+  m2 = new Five.Motor({
+    pins: {
+      dir: 5,
+      pwm: 4
+    }
+  });
+
+  led = new Five.Led(13);
+
+  this.repl.inject( {
+    m1: m1,
+    m2: m2
+  });
+
 });

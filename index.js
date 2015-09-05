@@ -62,6 +62,7 @@ server.route([
 server.start();
 
 var io = require('socket.io')(server.listener);
+var heartbeatTimer;
 
 io.on('connection', function (socket) {
   socket.on('newUser', function () {
@@ -84,6 +85,13 @@ io.on('connection', function (socket) {
   });
   socket.on("stop", function() {
     bot.stop();
+  });
+  socket.on("heartbeat", function() {
+    clearTimeout(heartbeatTimer);
+
+    heartbeatTimer = setTimeout(function() {
+      bot.stop();
+    }, 2000);
   });
 });
 

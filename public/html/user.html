@@ -66,6 +66,10 @@
           });
         });
 
+        setInterval(function() {
+          socket.emit("heartbeat");
+        }, 1000);
+
       </script>
   </body>
 </html>

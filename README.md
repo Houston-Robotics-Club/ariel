@@ -18,6 +18,9 @@ The Javascript-Robotics programming framework
 ### [keypress.js](http://dmauro.github.io/Keypress/)
 Handles keypress events on the client
 
+### [virtualjoystick.js](https://github.com/jeromeetienne/virtualjoystick.js)
+Virtual joystick for user page
+
 ##Learning Resources
 
 ###Fundamentals

@@ -41,3 +41,15 @@ button {
   margin: 1vw;
   width: 16vw;
 }
+
+.joystick_left {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+.joystick_right {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}

@@ -62,35 +62,57 @@ server.route([
 server.start();
 
 var io = require('socket.io')(server.listener);
-var heartbeatTimer;
+var activeUser = null;
+var commands = [
+  'toggleLED',
+  'left',
+  'right',
+  'forward',
+  'reverse',
+  'stop'
+];
 
 io.on('connection', function (socket) {
+  var heartbeatTimer;
+
+  // Generate handlers on the user's connection for each command
+  commands.forEach(function(command) {
+
+    // Handler for this command
+    socket.on(command, function() {
+
+      // Only run command if this user is the active one
+      if (activeUser === socket) {
+
+        // Run the command on the robot
+        bot[command]();
+      }
+    });
+  });
+
   socket.on('newUser', function () {
     console.log("Hi New User");
   });
-  socket.on("toggleLED", function() {
-    bot.toggle();
-  });
-  socket.on("left", function() {
-    bot.left();
-  });
-  socket.on("right", function() {
-    bot.right();
-  });
-  socket.on("forward", function() {
-    bot.forward();
-  });
-  socket.on("reverse", function() {
-    bot.reverse();
-  });
-  socket.on("stop", function() {
-    bot.stop();
-  });
   socket.on("heartbeat", function() {
+
+    // Reset this user's heartbeat timer so the timeout is not called
     clearTimeout(heartbeatTimer);
 
+    // Set the active user to this connection if there is no current active user
+    if (activeUser === null) {
+      activeUser = socket;
+    }
+
+    // Set this user's heartbeat timeout
     heartbeatTimer = setTimeout(function() {
-      bot.stop();
+
+      // Only do something if the active user timed out
+      if (activeUser === socket) {
+
+        // Stop the the robot's movement and clear the active user
+        bot.stop();
+        activeUser = null;
+      }
     }, 2000);
   });
 });

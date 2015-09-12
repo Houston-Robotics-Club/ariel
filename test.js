@@ -3,7 +3,7 @@ var keypress = require('keypress');
 
 var board = new Five.Board();
 
-var m1speed = 0, m2speed = 0;
+var speed = 0, scalar = 1;
 
 board.on("ready", function() {
 
@@ -29,21 +29,11 @@ board.on("ready", function() {
   // listen for the "keypress" event
   process.stdin.on('keypress', function (ch, key) {
     console.log('got "keypress"', key);
-    if (key && key.name == 'a') {
-      m1speed = m1speed + 1;
-      m1.forward(m1speed);
-    }
-    if (key && key.name == 'z') {
-      m1speed = m1speed - 1;
-      m1.forward(m1speed);
-    }
     if (key && key.name == 's') {
-      m2speed = m2speed + 1;
-      m2.forward(m2speed);
+      scalar = scalar + 0.01;
     }
-    if (key && key.name == 'x') {
-      m2speed = m2speed - 1;
-      m2.forward(m2speed);
+    if (key && key.name == 'a') {
+      scalar = scalar - 0.01;
     }
   });
 
@@ -51,8 +41,9 @@ board.on("ready", function() {
     m1: m1,
     m2: m2,
     forward: function(speed) {
-      m1.forward(speed);
+      m1.forward(speed * scalar);
       m2.forward(speed);
+      console.log("m1: " + speed * scalar + ", m2: " + speed);
     }
   });
 

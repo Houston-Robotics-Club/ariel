@@ -5,6 +5,7 @@
     <script src="/js/simpleWebRTC.js"></script>
     <script src="/js/keypress-2.1.3.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/virtualjoystick.js"></script>
   </head>
   <body id="user">
       <div class="controls">
@@ -19,8 +20,44 @@
         <button id="stop">Stop</button>
       </div>
       <div id="remotesVideos"></div>
-      <img class="joystick_left" src="PLACEHOLDER.PNG" width="100" height="100">
-      <img class="joystick_right" src="PLACEHOLDER.PNG" width="100" height="100">
+      <script>
+          var RightStick = new VirtualJoystick({
+            mouseSupport: true,
+            container: document.body,
+            strokeStyle: 'blue',
+          //  stationaryBase: true,
+          //  baseX: window.innerWidth-100,
+          //  baseY: window.innerHeight-100,
+            limitStickTravel: true,
+            stickRadius: 50
+        });
+
+        RightStick.addEventListener('touchStartValidation', function(event){
+          var touch	= event.changedTouches[0];
+          console.log(touch.pageX, touch.pageY);
+          if( touch.pageX >= window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
+          return false
+        });
+
+
+          var LeftStick = new VirtualJoystick({
+            mouseSupport: true,
+            container: document.body,
+            strokeStyle: 'red',
+        //    stationaryBase: true,
+        //    baseX: 100,
+          //  baseY: window.innerHeight-100,
+            limitStickTravel: true,
+            stickRadius: 50
+        });
+
+        LeftStick.addEventListener('touchStartValidation', function(event){
+          var touch	= event.changedTouches[0];
+          if( touch.pageX < window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
+          return false
+        });
+
+        </script>
       <script src="/js/ariel.js"></script>
   </body>
 </html>

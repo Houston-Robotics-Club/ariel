@@ -1,0 +1,55 @@
+body {
+  background-color: #000;
+  margin: 0;
+}
+
+#remotesVideos {
+  background-color: yellow;
+  height: 100vh;
+  width: 82vw;
+}
+
+#user #remotesVideos video {
+  transform: rotate(-90deg);
+}
+
+#bot #remotesVideos {
+  width: 100vw;
+}
+
+
+.controls {
+  height: 100vw;
+  width: 18vw;
+  float: right;
+}
+
+#videoContainer {
+  height: 25vw;
+  width: 16vw;
+  overflow:hidden;
+  margin: 1vw 1vw 0 1vw;
+}
+
+#localVideo {
+  height: 25vw;
+  background-color: red;
+  margin-left: -6vw;
+}
+
+button {
+  margin: 1vw;
+  width: 16vw;
+}
+
+.joystick_left {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+.joystick_right {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}

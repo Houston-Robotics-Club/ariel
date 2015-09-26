@@ -1,14 +1,21 @@
+var Five = require("johnny-five");
 var bot = require("./lib/bot.js");
+//var head = require("./lib/stepper.js");
 var Hapi = require('hapi');
 
+var boardOpts;
 
 if (process.env.ARIELENV === "dev") {
+  boardOpts = {};
   opts = {
     port: 8080
   };
 } else {
   opts = {
     port: 80
+  };
+  boardOpts = {
+    port: "COM5"
   };
 }
 
@@ -63,36 +70,38 @@ server.start();
 
 var io = require('socket.io')(server.listener);
 var activeUser = null;
-var commands = [
-  'toggleLED',
-  'left',
-  'right',
-  'forward',
-  'reverse',
-  'stop'
-];
+var commands = {
+  bot: ['toggleLED', 'left', 'right', 'forward', 'reverse', 'stop'],
+  head:[]
+};
+
+var board = new Five.Board(boardOpts);
+
+board.on("ready", function() {
+  var platform = bot.init(Five);
+  //var neck = head.init(Five);
+});
 
 io.on('connection', function (socket) {
   var heartbeatTimer;
 
   // Generate handlers on the user's connection for each command
-  commands.forEach(function(command) {
-
-    // Handler for this command
+  commands.bot.forEach(function(command) {
     socket.on(command, function() {
-
-      // Only run command if this user is the active one
-      if (activeUser === socket) {
-
-        // Run the command on the robot
-        bot[command]();
-      }
+      if (activeUser === socket) bot[command]();
     });
   });
+
+  /*commands.head.forEach(function(command) {
+    socket.on(command, function() {
+      if (activeUser === socket) head[command]();
+    });
+  });*/
 
   socket.on('newUser', function () {
     console.log("Hi New User");
   });
+
   socket.on("heartbeat", function() {
 
     // Reset this user's heartbeat timer so the timeout is not called

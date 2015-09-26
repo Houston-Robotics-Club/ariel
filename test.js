@@ -3,7 +3,7 @@ var keypress = require('keypress');
 
 var board = new Five.Board();
 
-var speed = 0, scalar = 1;
+var gspeed = 255, scalar = 1;
 
 board.on("ready", function() {
 
@@ -31,9 +31,25 @@ board.on("ready", function() {
     console.log('got "keypress"', key);
     if (key && key.name == 's') {
       scalar = scalar + 0.01;
+      m1.forward(gspeed * scalar);
+      m2.forward(gspeed);
+      console.log("m1: " + gspeed * scalar + ", m2: " + gspeed);
     }
     if (key && key.name == 'a') {
       scalar = scalar - 0.01;
+      m1.forward(gspeed * scalar);
+      m2.forward(gspeed);
+      console.log("m1: " + gspeed * scalar + ", m2: " + gspeed);
+    }
+    if (key && key.name == 'w') {
+      m1.forward(gspeed * scalar);
+      m2.forward(gspeed);
+      console.log("m1: " + gspeed * scalar + ", m2: " + gspeed);
+    }
+    if (key && key.name == 'z') {
+      m1.stop();
+      m2.stop();
+console.log("m1: " + gspeed * scalar + ", m2: " + gspeed);
     }
   });
 
@@ -41,9 +57,14 @@ board.on("ready", function() {
     m1: m1,
     m2: m2,
     forward: function(speed) {
-      m1.forward(speed * scalar);
-      m2.forward(speed);
-      console.log("m1: " + speed * scalar + ", m2: " + speed);
+      gspeed = speed || gspeed;
+      m1.forward(gspeed * scalar);
+      m2.forward(gspeed);
+      console.log("m1: " + gspeed * scalar + ", m2: " + gspeed);
+    },
+    stop: function() {
+      m1.stop();
+      m2.stop();
     }
   });
 

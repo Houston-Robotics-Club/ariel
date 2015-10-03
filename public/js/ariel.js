@@ -13,13 +13,20 @@ webrtc.on('readyToCall', function () {
   webrtc.joinRoom('Houston Robotics Club: Ariel');
 });
 
+// Note: CANNOT have invalid commands here.
 var commands = [
   {"com": "toggleLED", "key": "l" },
   {"com": "forward", "key": "up" },
   {"com": "left", "key": "left" },
   {"com": "right", "key": "right" },
   {"com": "reverse", "key": "down" },
-  {"com": "stop", "key": "space" }
+  {"com": "stop", "key": "space" },
+  //{"com": "tiltHeadCenter"},
+  //{"com": "tiltHeadFwd"},
+  //{"com": "tiltHeadBack"},
+  {"com": "panHeadCenter"},
+  {"com": "panHeadLeft"},
+  {"com": "panHeadRight"}
 ];
 
 // Loop through our commands
@@ -33,6 +40,14 @@ commands.forEach( function(command) {
     socket.emit(command.com);
   });
 
+  command.el.addEventListener("mouseup", function() {
+    if(command.com == "tiltHeadFwd" || command.com == "tiltHeadBack" ||
+       command.com == "panHeadLeft" || command.com == "panHeadRight")
+    {
+      socket.emit("pulseStop");
+    }
+  });
+
   // Listen for keypress events
   listener.register_combo({
     "keys"              : command.key,
@@ -44,9 +59,10 @@ commands.forEach( function(command) {
 });
 
 // Bind event to window so the event works even when the mouse is outside browser
-window.addEventListener("mouseup", function() {
-  socket.emit("stop");
+document.addEventListener("mouseup", function() {
+    socket.emit("stop");
 });
+
 
 setInterval(function() {
   socket.emit("heartbeat");

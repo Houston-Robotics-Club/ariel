@@ -1,6 +1,6 @@
 var Five = require("johnny-five");
 var bot = require("./lib/bot.js");
-//var head = require("./lib/stepper.js");
+var head = require("./lib/stepper.js");
 var Hapi = require('hapi');
 
 var boardOpts;
@@ -70,16 +70,17 @@ server.start();
 
 var io = require('socket.io')(server.listener);
 var activeUser = null;
-var commands = {
+var commands = {  // Note: can have invalid commands here
   bot: ['toggleLED', 'left', 'right', 'forward', 'reverse', 'stop'],
-  head:[]
+  head:['tiltHeadCenter', 'tiltHeadFwd', 'tiltHeadBack',
+        'panHeadCenter', 'panHeadLeft', 'panHeadRight', 'pulseStop']
 };
 
 var board = new Five.Board(boardOpts);
 
 board.on("ready", function() {
   var platform = bot.init(Five);
-  //var neck = head.init(Five);
+  var neck = head.init(Five, board);
 });
 
 io.on('connection', function (socket) {
@@ -88,15 +89,17 @@ io.on('connection', function (socket) {
   // Generate handlers on the user's connection for each command
   commands.bot.forEach(function(command) {
     socket.on(command, function() {
+      console.log("Command = " + command);//////////////////debug
       if (activeUser === socket) bot[command]();
     });
   });
 
-  /*commands.head.forEach(function(command) {
+  commands.head.forEach(function(command) {
     socket.on(command, function() {
+      console.log("Command = " + command); ///////////////debug
       if (activeUser === socket) head[command]();
     });
-  });*/
+  });
 
   socket.on('newUser', function () {
     console.log("Hi New User");

@@ -72,8 +72,10 @@ var io = require('socket.io')(server.listener);
 var activeUser = null;
 var commands = {  // Note: can have invalid commands here
   bot: ['toggleLED', 'left', 'right', 'forward', 'reverse', 'stop'],
-  head:['tiltHeadCenter', 'tiltHeadFwd', 'tiltHeadBack',
-        'panHeadCenter', 'panHeadLeft', 'panHeadRight', 'pulseStop']
+  head:['panHeadCenter', 'panHeadLeft', 'panHeadRight',
+        'tiltHeadCenter', 'tiltHeadFwd', 'tiltHeadBack',
+        'heightHeadCenter', 'heightHeadUp', 'heightHeadDown',
+        'pulseStop']
 };
 
 var board = new Five.Board(boardOpts);

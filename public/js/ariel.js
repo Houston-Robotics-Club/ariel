@@ -21,12 +21,15 @@ var commands = [
   {"com": "right", "key": "right" },
   {"com": "reverse", "key": "down" },
   {"com": "stop", "key": "space" },
-  //{"com": "tiltHeadCenter"},
-  //{"com": "tiltHeadFwd"},
-  //{"com": "tiltHeadBack"},
   {"com": "panHeadCenter"},
   {"com": "panHeadLeft"},
-  {"com": "panHeadRight"}
+  {"com": "panHeadRight"},
+  {"com": "tiltHeadCenter"},
+  {"com": "tiltHeadFwd"},
+  {"com": "tiltHeadBack"},
+  {"com": "heightHeadCenter"},
+  {"com": "heightHeadUp"},
+  {"com": "heightHeadDown"}
 ];
 
 // Loop through our commands

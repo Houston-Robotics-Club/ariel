@@ -9,9 +9,11 @@
   "author": "Donovan Buck <donovan@donovan.bz>",
   "license": "MIT",
   "dependencies": {
+    "async": "^1.5.0",
     "hapi": "^8.8.1",
     "johnny-five": "^0.8.81",
     "keypress": "^0.2.1",
-    "socket.io": "^1.3.6"
+    "socket.io": "^1.3.6",
+    "trier": "philbooth/trier.js"
   }
 }

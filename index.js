@@ -1,6 +1,6 @@
 var Five = require("johnny-five");
 var bot = require("./lib/bot.js");
-var head = require("./lib/stepper.js");
+//var head = require("./lib/stepper.js");
 var Hapi = require('hapi');
 
 var boardOpts;
@@ -82,7 +82,7 @@ var board = new Five.Board(boardOpts);
 
 board.on("ready", function() {
   var platform = bot.init(Five);
-  var neck = head.init(Five, board);
+  //var neck = head.init(Five, board);
 });
 
 io.on('connection', function (socket) {

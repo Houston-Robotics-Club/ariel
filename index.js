@@ -1,7 +1,10 @@
 var Five = require("johnny-five");
 var bot = require("./lib/bot.js");
 //var head = require("./lib/stepper.js");
+var dotenv = require("dotenv");
 var Hapi = require('hapi');
+
+dotenv.load();
 
 var boardOpts;
 

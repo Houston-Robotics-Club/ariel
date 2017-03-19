@@ -8,13 +8,13 @@ board.on("ready", function() {
   var stepper = new Five.Stepper({
     type: Five.Stepper.TYPE.FOUR_WIRE,
     stepsPerRev: 48,
-    rpm: 20,
+    rpm: 60,
     pins: {
-      motor1: 6, // in1 on motor controller
-      motor2: 9, // in2 on motor controller
-      motor3: 10, // in3 on motor controller
-      motor4: 11, // in4 on motor controller
-      enable: 13
+      motor1: 2, // in1 on motor controller
+      motor2: 3, // in2 on motor controller
+      motor3: 4, // in3 on motor controller
+      motor4: 5, // in4 on motor controller
+      enable: 6
     }
   });
 

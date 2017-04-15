@@ -1,8 +1,11 @@
 var Five = require("johnny-five");
 var bot = require("./lib/bot.js");
-//var head = require("./lib/stepper.js");
 var dotenv = require("dotenv");
 var Hapi = require('hapi');
+
+// Here we are using a customized verion of the Johnny-Five Stepper class
+// that adds enable pins
+Five.Stepper = require("./lib/stepper.js");
 
 dotenv.load();
 
@@ -85,6 +88,11 @@ var board = new Five.Board(boardOpts);
 
 board.on("ready", function() {
   var platform = bot.init(Five);
+  this.repl.inject({
+    bot:bot,
+    u: bot.tiltHeadBack,
+    d: bot.tiltHeadFwd
+  });
   //var neck = head.init(Five, board);
 });
 

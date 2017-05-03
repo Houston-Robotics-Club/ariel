@@ -5,7 +5,7 @@ var Hapi = require('hapi');
 
 // Here we are using a customized verion of the Johnny-Five Stepper class
 // that adds enable pins
-Five.Stepper = require("./lib/stepper.js");
+//Five.Stepper = require("./lib/stepper.js");
 
 dotenv.load();
 

@@ -21,13 +21,13 @@ Handles keypress events on the client
 ### [virtualjoystick.js](https://github.com/jeromeetienne/virtualjoystick.js)
 Virtual joystick for user page
 
-##Learning Resources
+## Learning Resources
 
-###Fundamentals
+### Fundamentals
 
 * [nodeschool.io](http://nodeschool.io/#workshopper-list) is a pretty amazing (and fun!) way to learn about many of these topics. These are "choose-your-own-adventure" style workshops that let you build and check solutions to common problems.
 * [JavaScript for Cats](http://jsforcats.com/) is a fun introduction to programming with JavaScript as a first language.
 
-###Tips for the client side code
+### Tips for the client side code
 
 We're going to need to [Select Elements on the web page](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) and then [add event listeners to those elements](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)

@@ -21,13 +21,6 @@ var commands = [
   {"com": "right", "key": "right" },
   {"com": "reverse", "key": "down" },
   {"com": "stop", "key": "space" },
-  {"com": "panHeadCenter"},
-  {"com": "panHeadLeft"},
-  {"com": "panHeadRight"},
-  {"com": "tiltHeadCenter"},
-  {"com": "tiltHeadFwd"},
-  {"com": "tiltHeadBack"},
-  {"com": "heightHeadCenter"},
   {"com": "heightHeadUp"},
   {"com": "heightHeadDown"}
 ];
@@ -43,14 +36,6 @@ commands.forEach( function(command) {
     socket.emit(command.com);
   });
 
-  command.el.addEventListener("mouseup", function() {
-    if(command.com == "tiltHeadFwd" || command.com == "tiltHeadBack" ||
-       command.com == "panHeadLeft" || command.com == "panHeadRight")
-    {
-      socket.emit("pulseStop");
-    }
-  });
-
   // Listen for keypress events
   listener.register_combo({
     "keys"              : command.key,
@@ -61,9 +46,66 @@ commands.forEach( function(command) {
   });
 });
 
+// Commands with params
+var tiltBackEl = document.getElementById("tiltHeadBack");
+tiltBackEl.addEventListener("mousedown", function() {
+  socket.emit("tilt", 20);
+});
+
+var tiltFwdEl = document.getElementById("tiltHeadFwd");
+tiltFwdEl.addEventListener("mousedown", function() {
+  socket.emit("tilt", -20);
+});
+
+var panLeftEl = document.getElementById("panHeadLeft");
+panLeftEl.addEventListener("mousedown", function() {
+  socket.emit("pan", -20);
+});
+
+var panRightEl = document.getElementById("panHeadRight");
+panRightEl.addEventListener("mousedown", function() {
+  socket.emit("pan", 20);
+});
+
 // Bind event to window so the event works even when the mouse is outside browser
 document.addEventListener("mouseup", function() {
     socket.emit("stop");
+});
+
+var RightStick = new VirtualJoystick({
+    mouseSupport: false,
+    container: document.body,
+    strokeStyle: 'blue',
+  //  stationaryBase: true,
+  //  baseX: window.innerWidth-100,
+  //  baseY: window.innerHeight-100,
+    limitStickTravel: true,
+    stickRadius: 50
+});
+
+RightStick.addEventListener('touchStartValidation', function(event){
+  var touch	= event.changedTouches[0];
+  console.log(touch.pageX, touch.pageY);
+  if( touch.pageX >= window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
+  return false
+});
+
+
+  var LeftStick = new VirtualJoystick({
+    mouseSupport: false,
+    container: document.body,
+    strokeStyle: 'red',
+//    stationaryBase: true,
+//    baseX: 100,
+  //  baseY: window.innerHeight-100,
+    limitStickTravel: true,
+    stickRadius: 50
+});
+
+LeftStick.addEventListener('touchStartValidation', function(event){
+  var touch	= event.changedTouches[0];
+  if( touch.pageX < window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
+  return false
 });
 
 

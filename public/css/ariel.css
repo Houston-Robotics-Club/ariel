@@ -22,12 +22,13 @@ body {
   height: 100vw;
   width: 18vw;
   float: right;
+  text-align: center;
 }
 
 #videoContainer {
   height: 25vw;
   width: 16vw;
-  overflow:hidden;
+  overflow: hidden;
   margin: 1vw 1vw 0 1vw;
 }
 
@@ -38,8 +39,12 @@ body {
 }
 
 button {
+  width: 6vw;
+  margin: 0.5vw 0.3vw;
+}
+
+.buttonGroup {
   margin: 1vw;
-  width: 16vw;
 }
 
 .joystick_left {

@@ -11,6 +11,7 @@
   "dependencies": {
     "async": "^1.5.2",
     "dotenv": "^4.0.0",
+    "firmata": "github:dtex/firmata#stepper2",
     "hapi": "^8.8.1",
     "johnny-five": "^0.8.81",
     "keypress": "^0.2.1",

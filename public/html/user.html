@@ -12,61 +12,32 @@
         <div id="videoContainer">
           <video id="localVideo"></video>
         </div>
-        <button id="toggleLED">Toggle LED</button>
-        <button id="forward">Forward</button>
-        <button id="left">Left</button>
-        <button id="right">Right</button>
-        <button id="reverse">Reverse</button>
-        <button id="stop">Stop</button>
-        <button id="panHeadCenter">Center Head Pan</button>
-        <button id="panHeadLeft">Pan Head Left</button>
-        <button id="panHeadRight">Pan Head Right</button>
-        <button id="tiltHeadCenter">Center Head Tilt</button>
-        <button id="tiltHeadBack">Tilt Head Back</button>
-        <button id="tiltHeadFwd">Tilt Head Fwd</button>
-        <button id="heightHeadCenter">Center Head Height</button>
-        <button id="heightHeadUp">Move Head Up</button>
-        <button id="heightHeadDown">Move Head Down</button>
+        <div class="buttonGroup">
+          <div><button id="forward">Forward</button></div>
+          <button id="left">Left</button>
+          <button id="right">Right</button>
+          <div><button id="reverse">Reverse</button></div>
+        </div>
+        <div class="buttonGroup">
+         <button id="stop">Stop</button>
+        </div>
+        <div class="buttonGroup">
+          <button id="panHeadLeft">Pan Left</button>
+          <button id="panHeadRight">Pan Right</button>
+        </div>
+        <div class="buttonGroup">
+          <div><button id="tiltHeadBack">Tilt Back</button></div>
+          <div><button id="tiltHeadFwd">Tilt Fwd</button></div>
+        </div>
+        <div class="buttonGroup">
+          <div><button id="heightHeadUp">Move Up</button></div>
+          <div><button id="heightHeadDown">Move Down</button></div>
+        </div>
+        <div class="buttonGroup">
+          <button id="toggleLED">Toggle LED</button>
+        </div>
       </div>
       <div id="remotesVideos"></div>
-      <script>
-          var RightStick = new VirtualJoystick({
-            mouseSupport: false,
-            container: document.body,
-            strokeStyle: 'blue',
-          //  stationaryBase: true,
-          //  baseX: window.innerWidth-100,
-          //  baseY: window.innerHeight-100,
-            limitStickTravel: true,
-            stickRadius: 50
-        });
-
-        RightStick.addEventListener('touchStartValidation', function(event){
-          var touch	= event.changedTouches[0];
-          console.log(touch.pageX, touch.pageY);
-          if( touch.pageX >= window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
-          return false
-        });
-
-
-          var LeftStick = new VirtualJoystick({
-            mouseSupport: false,
-            container: document.body,
-            strokeStyle: 'red',
-        //    stationaryBase: true,
-        //    baseX: 100,
-          //  baseY: window.innerHeight-100,
-            limitStickTravel: true,
-            stickRadius: 50
-        });
-
-        LeftStick.addEventListener('touchStartValidation', function(event){
-          var touch	= event.changedTouches[0];
-          if( touch.pageX < window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
-          return false
-        });
-
-        </script>
       <script src="/js/ariel.js"></script>
   </body>
 </html>

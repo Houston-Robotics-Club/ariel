@@ -77,21 +77,19 @@ server.start();
 var io = require('socket.io')(server.listener);
 var activeUser = null;
 var commands = {  // Note: can have invalid commands here
-  bot: ['toggleLED', 'left', 'right', 'forward', 'reverse', 'stop'],
-  head:['panHeadCenter', 'panHeadLeft', 'panHeadRight',
-        'tiltHeadCenter', 'tiltHeadFwd', 'tiltHeadBack',
-        'heightHeadCenter', 'heightHeadUp', 'heightHeadDown',
+  bot: ['toggleLED', 'left', 'right', 'forward', 'reverse', 'stop', 'tilt', 'pan'],
+  head:['tiltHeadBack', 
+        'panHeadLeft', 'panHeadRight',
+        'heightHeadUp', 'heightHeadDown',
         'pulseStop']
 };
 
 var board = new Five.Board(boardOpts);
 
 board.on("ready", function() {
-  var platform = bot.init(Five);
+  var platform = bot.init(Five, board.io);
   this.repl.inject({
-    bot:bot,
-    u: bot.tiltHeadBack,
-    d: bot.tiltHeadFwd
+    bot:bot
   });
   //var neck = head.init(Five, board);
 });
@@ -101,18 +99,18 @@ io.on('connection', function (socket) {
 
   // Generate handlers on the user's connection for each command
   commands.bot.forEach(function(command) {
-    socket.on(command, function() {
+    socket.on(command, function(value) {
       console.log("Command = " + command);//////////////////debug
-      if (activeUser === socket) bot[command]();
+      if (activeUser === socket) bot[command](value);
     });
   });
 
-  commands.head.forEach(function(command) {
-    socket.on(command, function() {
-      console.log("Command = " + command); ///////////////debug
-      if (activeUser === socket) head[command]();
-    });
-  });
+  // commands.head.forEach(function(command) {
+  //   socket.on(command, function() {
+  //     console.log("Command = " + command); ///////////////debug
+  //     if (activeUser === socket) head[command]();
+  //   });
+  // });
 
   socket.on('newUser', function () {
     console.log("Hi New User");

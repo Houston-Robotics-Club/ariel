@@ -105,13 +105,6 @@ io.on('connection', function (socket) {
     });
   });
 
-  // commands.head.forEach(function(command) {
-  //   socket.on(command, function() {
-  //     console.log("Command = " + command); ///////////////debug
-  //     if (activeUser === socket) head[command]();
-  //   });
-  // });
-
   socket.on('newUser', function () {
     console.log("Hi New User");
   });

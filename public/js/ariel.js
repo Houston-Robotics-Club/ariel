@@ -109,6 +109,18 @@ LeftStick.addEventListener('touchStartValidation', function(event){
 });
 
 
+var videoEl = document.getElementById("remotesVideos");
+videoEl.addEventListener('click', function (event) {
+  var x = event.clientX;
+  var y = event.clientY;
+  var w = event.srcElement.clientWidth;
+  var h = event.srcElement.clientHeight;
+
+  var xOff = (w/2 - x) * -1;
+  var yOff = (h/2 - y) * -1;
+  console.log(xOff, yOff);
+});
+
 setInterval(function() {
   socket.emit("heartbeat");
 }, 1000);

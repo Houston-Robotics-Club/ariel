@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	
+		<title>A.R.I.E.L. Controller Page</title>
+		<meta name="description" content="A.R.I.E.L. Controller Page">
+		<meta name="author" content="Houston Robotics Club">
+
+		<link rel="stylesheet" href="css/styles.css?v=1.0">
+
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!-- <script src="js/scripts.js"></script> -->
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		
+		<header>
+		<!-- Allows user to exit control of Ariel-->
+			<button class="buttons" type="button">Logout</button>
+		</header>
+		<!--Defined main work space for screen showing Ariel's POV; smaller map showing robots location on Google maps; and arrows to control tablet and robot-->
+		<div class="container">
+			<div id="watch_camera"> </div>
+			<div id="watch_gps_location"></div>
+			
+			
+			
+			<!-- Arrows that control tablet/camera of Ariel-->
+			<a href="#" class="move_camera"><span class="glyphicon glyphicon-arrow-up"></span></a>
+			<a href="#" class="move_camera"><span class="glyphicon glyphicon-arrow-down"></span></a>
+			<a href="#" class="move_camera"><span class="glyphicon glyphicon-arrow-left"></span></a>
+			<a href="#" class="move_camera"><span class="glyphicon glyphicon-arrow-right"></span></a>
+			<br>
+			<!-- Arrows that control movement of Ariel-->
+			<a href="#" class="move_robot"><span class="glyphicon glyphicon-arrow-up"></span></a>
+			<a href="#" class="move_robot"><span class="glyphicon glyphicon-arrow-down"></span></a>
+			<a href="#" class="move_robot"><span class="glyphicon glyphicon-arrow-left"></span></a>
+			<a href="#" class="move_robot"><span class="glyphicon glyphicon-arrow-right"></span></a>
+		</div>
+		<footer></footer>
+	</body>
+</html>
